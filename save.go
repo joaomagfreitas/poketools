@@ -6,11 +6,11 @@ import (
 
 // Save identifies all data blocks that the tool can extract.
 type Save struct {
+	Charset  Charset
 	Data     []byte
 	PlayerId Block
 	Money    Block
 	Name     Block
-	Charset  Charset
 }
 
 // Reads trainer data from save file.
