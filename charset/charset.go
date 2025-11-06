@@ -1,8 +1,6 @@
-package poketools
+package charset
 
-import (
-	"strings"
-)
+import "strings"
 
 // Charset maps the proprietary encoding used to store text data in
 // UTF-8 characters.
@@ -11,6 +9,7 @@ type Charset struct {
 	Terminator byte
 }
 
+// Decode decodes data block that is encoded using the charset.
 func (cs Charset) Decode(data []byte) string {
 	var buf strings.Builder
 	for _, b := range data {
