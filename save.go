@@ -2,11 +2,13 @@ package poketools
 
 import (
 	"encoding/binary"
+
+	"github.com/joaomagfreitas/poketools/charset"
 )
 
 // Save identifies all data blocks that the tool can extract.
 type Save struct {
-	Charset  Charset
+	Charset  charset.Charset
 	Data     []byte
 	PlayerId Block
 	Money    Block

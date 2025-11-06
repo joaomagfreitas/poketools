@@ -2,6 +2,8 @@ package poketools
 
 import (
 	"fmt"
+
+	"github.com/joaomagfreitas/poketools/charset"
 )
 
 // Load loads a Pokemon RGB/Y 32KB save file.
@@ -16,6 +18,6 @@ func Load(data []byte) (*Save, error) {
 		PlayerId: blockPlayerId,
 		Money:    blockMoney,
 		Name:     blockName,
-		Charset:  EnglishCharset,
+		Charset:  charset.RGBY.English,
 	}, nil
 }
