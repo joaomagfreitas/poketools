@@ -14,10 +14,28 @@ func TestDecode(t *testing.T) {
 		encoded []byte
 	}{
 		{
-			desc:    "decodes using english charset",
+			desc:    "english charset",
 			encoded: []byte{128, 146, 135, 80, 137, 128, 130, 138, 80, 141, 132},
 			decoded: "ASH",
 			charset: charset.RGBY.English,
+		},
+		{
+			desc:    "french/german charset",
+			encoded: []byte{128, 219, 202},
+			decoded: "As'û",
+			charset: charset.RGBY.FrenchGerman,
+		},
+		{
+			desc:    "italian/spanish charset",
+			encoded: []byte{136, 240, 140},
+			decoded: "I$M",
+			charset: charset.RGBY.ItalianSpanish,
+		},
+		{
+			desc:    "japanese charset",
+			encoded: []byte{20, 40, 60},
+			decoded: "ナ゙ぐぶ",
+			charset: charset.RGBY.Japanese,
 		},
 	}
 	for _, tC := range testCases {
