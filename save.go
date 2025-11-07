@@ -3,23 +3,23 @@ package poketools
 import (
 	"encoding/binary"
 
+	"github.com/joaomagfreitas/poketools/block"
 	"github.com/joaomagfreitas/poketools/charset"
 )
 
 // Save identifies all data blocks that the tool can extract.
 type Save struct {
-	Charset  charset.Charset
-	Data     []byte
-	PlayerId Block
-	Money    Block
-	Name     Block
+	Charset charset.Charset
+	Data    []byte
+	Blocks  block.Blocks
 }
 
 // Reads trainer data from save file.
 func (s Save) Trainer() Trainer {
-	n := s.Name.Read(s.Data)
-	id := s.PlayerId.Read(s.Data)
-	m := s.Money.Read(s.Data)
+	blk := s.Blocks
+	n := blk.Name.Read(s.Data)
+	id := blk.PlayerId.Read(s.Data)
+	m := blk.Money.Read(s.Data)
 
 	return Trainer{
 		Id:    binary.BigEndian.Uint16(id),

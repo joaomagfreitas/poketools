@@ -1,4 +1,4 @@
-package poketools
+package block
 
 // Block registers the memory region in which data is located in the save file.
 type Block struct {
