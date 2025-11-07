@@ -3,6 +3,7 @@ package poketools
 import (
 	"fmt"
 
+	"github.com/joaomagfreitas/poketools/block"
 	"github.com/joaomagfreitas/poketools/charset"
 )
 
@@ -14,10 +15,8 @@ func Load(data []byte) (*Save, error) {
 	}
 
 	return &Save{
-		Data:     data,
-		PlayerId: blockPlayerId,
-		Money:    blockMoney,
-		Name:     blockName,
-		Charset:  charset.RGBY.English,
+		Data:    data,
+		Blocks:  block.RGBY.All,
+		Charset: charset.RGBY.English,
 	}, nil
 }

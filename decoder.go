@@ -4,21 +4,6 @@ import "math"
 
 // Functions still a bit all around the place, will be refactored later.
 
-var blockName = Block{
-	Offset: 0x2598,
-	Size:   0xB,
-}
-
-var blockMoney = Block{
-	Offset: 0x25F3,
-	Size:   0x3,
-}
-
-var blockPlayerId = Block{
-	Offset: 0x2605,
-	Size:   0x2,
-}
-
 func decodeMoney(block []byte) uint32 {
 	var v uint32
 
