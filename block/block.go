@@ -12,10 +12,10 @@ func (b Block) Read(data []byte) []byte {
 }
 
 // ReadMultiple reads the data of [count] sequentially divided blocks.
-func (b Block) ReadMultiple(data []byte, count int) [][]byte {
+func (b Block) ReadMultiple(data []byte, count uint16) [][]byte {
 	d := make([][]byte, count)
 	for i := range count {
-		off := b.Offset + (b.Size * uint16(i))
+		off := b.Offset + (b.Size * i)
 		d[i] = data[off : off+b.Size]
 	}
 

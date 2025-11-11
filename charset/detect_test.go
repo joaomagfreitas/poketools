@@ -10,10 +10,10 @@ import (
 func TestDetect(t *testing.T) {
 	testCases := []struct {
 		desc     string
+		charset  charset.Charset
 		data     [][]byte
 		charsets []charset.Charset
 		ok       bool
-		charset  charset.Charset
 	}{
 		{
 			desc:     "returns no charset if no data blocks are provided",

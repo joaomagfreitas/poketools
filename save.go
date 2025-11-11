@@ -9,10 +9,10 @@ import (
 
 // Save identifies all data blocks that the tool can extract.
 type Save struct {
+	Decoders decoder.Decoders
 	Charset  charset.Charset
 	Data     []byte
 	Blocks   block.Blocks
-	Decoders decoder.Decoders
 }
 
 // Reads trainer data from save file.
@@ -27,8 +27,8 @@ func (s Save) Trainer() Trainer {
 		RivalName: s.Decoders.Text(blk.RivalName.Read(s.Data)),
 		Party: Party{
 			Count: pc,
-			OT:    slicesx.Map(blk.PartyOT.ReadMultiple(s.Data, int(pc)), s.Decoders.Text),
-			Names: slicesx.Map(blk.PartyNames.ReadMultiple(s.Data, int(pc)), s.Decoders.Text),
+			OT:    slicesx.Map(blk.PartyOT.ReadMultiple(s.Data, uint16(pc)), s.Decoders.Text),
+			Names: slicesx.Map(blk.PartyNames.ReadMultiple(s.Data, uint16(pc)), s.Decoders.Text),
 		},
 	}
 }
