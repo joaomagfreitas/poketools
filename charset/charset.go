@@ -22,3 +22,18 @@ func (cs Charset) Decode(data []byte) string {
 
 	return buf.String()
 }
+
+// Decodable checks whether a data block can be decoded using this charset.
+func (cs Charset) Decodable(data []byte) bool {
+	for _, b := range data {
+		if b == cs.Terminator {
+			break
+		}
+
+		if _, ok := cs.Encoding[b]; !ok {
+			return false
+		}
+	}
+
+	return true
+}
