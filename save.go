@@ -30,5 +30,6 @@ func (s Save) Trainer() Trainer {
 			OT:    slicesx.Map(blk.PartyOT.ReadMultiple(s.Data, uint16(pc)), s.Decoders.Text),
 			Names: slicesx.Map(blk.PartyNames.ReadMultiple(s.Data, uint16(pc)), s.Decoders.Text),
 		},
+		PokedexOwned: s.Decoders.PokedexOwned(blk.PokedexOwned.Read(s.Data)),
 	}
 }

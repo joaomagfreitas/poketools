@@ -9,5 +9,8 @@ type MoneyDecoder = func(data []byte) uint32
 // Alias for decoding player id data.
 type PlayerIdDecoder = func(data []byte) uint16
 
-// Alias for decoding party pokemon count.
+// Alias for decoding party pokemon count data.
 type PartyCountDecoder = func(data []byte) uint8
+
+// Alias for decoding pokedex owned data.
+type PokedexOwnedDecoder = func(data []byte) []uint16

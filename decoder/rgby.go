@@ -9,11 +9,25 @@ import (
 
 func RGBY(cs charset.Charset) Decoders {
 	return Decoders{
-		Text:       cs.Decode,
-		Money:      rgbyDecodeMoney,
-		PlayerId:   binary.BigEndian.Uint16,
-		PartyCount: rgbyDecodePartyCount,
+		Text:         cs.Decode,
+		Money:        rgbyDecodeMoney,
+		PlayerId:     binary.BigEndian.Uint16,
+		PartyCount:   rgbyDecodePartyCount,
+		PokedexOwned: rgbyDecodePokedexOwned,
 	}
+}
+
+func rgbyDecodePokedexOwned(data []byte) []uint16 {
+	owned := []uint16{}
+	for i := range uint16(151) {
+		if data[i>>3]>>(i&7)&1 == 0 {
+			continue
+		}
+
+		owned = append(owned, i+1)
+	}
+
+	return owned
 }
 
 func rgbyDecodePartyCount(data []byte) uint8 {

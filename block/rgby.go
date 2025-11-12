@@ -29,4 +29,8 @@ var RGBY = Blocks{
 		Offset: 0x2F2C + 0x152,
 		Size:   0xB,
 	},
+	PokedexOwned: Block{
+		Offset: 0x25A3,
+		Size:   0x13,
+	},
 }
