@@ -3,3 +3,4 @@ charsets
 rgby
 tpid
 stdx
+pokedex
