@@ -1,6 +1,7 @@
 package decoder_test
 
 import (
+	"slices"
 	"testing"
 
 	"github.com/joaomagfreitas/poketools/charset"
@@ -41,5 +42,22 @@ func TestRGBYPartyCountDecoder(t *testing.T) {
 		if pc := ds.PartyCount(d); pc != tpc {
 			t.Fatalf("%d != %d", tpc, pc)
 		}
+	}
+}
+
+func TestRGBYPokedexOwnedDecoder(t *testing.T) {
+	ds := decoder.RGBY(charset.Charset{})
+
+	td := []byte{
+		0x4B, // 0100 1011 (1, 2, 4 and 7 pokemon)
+		0x0,
+		0x89, // 1000 1001 (17, 20, and 24 pokemon)
+		0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0,
+		0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0,
+	}
+
+	tpo := []uint16{1, 2, 4, 7, 17, 20, 24}
+	if po := ds.PokedexOwned(td); !slices.Equal(po, tpo) {
+		t.Fatalf("%d != %d", tpo, po)
 	}
 }
