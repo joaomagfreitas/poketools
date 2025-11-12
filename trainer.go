@@ -4,10 +4,10 @@ package poketools
 type Trainer struct {
 	Name         string
 	RivalName    string
+	PokedexOwned []uint16
 	Party        Party
 	Money        uint32
 	Id           uint16
-	PokedexOwned []uint16
 }
 
 // Party records data about the player party pokemon.
