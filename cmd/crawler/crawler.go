@@ -16,18 +16,18 @@ import (
 	"github.com/joaomagfreitas/stdx/slicesx"
 )
 
-// Mimic Safari browser to avoid bot detection
+// Mimic Safari browser to avoid bot detection.
 var ua = "Mozilla/5.0 (Macintosh; Intel Mac OS X 15_7_2) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.0 Safari/605.1.15"
 
-// Generate urls of pages to crawl
+// Generate urls of pages to crawl.
 var pages = slicesx.Gen(151, func(index int) string {
 	return fmt.Sprintf("https://pokemondb.net/pokedex/%d", (index + 1))
 })
 
-// Max number of requests simultaneously
+// Max number of requests simultaneously.
 var parallel = 12
 
-// Time variance before firing requests
+// Time variance before firing requests.
 var wait = 3200 * time.Millisecond
 
 func main() {
@@ -44,7 +44,7 @@ func main() {
 					wg.Done()
 				}()
 
-				w := time.Duration(rand.UintN(uint(wait)))
+				w := time.Duration(rand.Int64N(int64(wait)))
 				log.Printf("> sleeping for %v before crawling %s", w, p)
 				time.Sleep(w)
 

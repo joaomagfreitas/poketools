@@ -147,6 +147,11 @@ linters:
           - errcheck
           - gosec
         path: (.+)_test\.go
+
+      - linters:
+          - gosec
+        path: cmd/crawler/crawler.go
+
     paths:
       - third_party$
       - builtin$
